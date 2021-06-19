@@ -1,0 +1,186 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dataclassification-api
+  namespace: coreografia
+  labels:
+    app: dataclassification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dataclassification
+  template:
+    metadata:
+      labels:
+        app: dataclassification
+    spec:
+      containers:
+      - name: dataclassification
+        image: docker.io/andresonthiago/app-mock-coreografia:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64M
+          limits:
+            cpu: 60m
+            memory: 228M  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataclassification-np
+  namespace: coreografia
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: webapp
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rns-api
+  namespace: coreografia
+  labels:
+    app: rns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rns
+  template:
+    metadata:
+      labels:
+        app: rns
+    spec:
+      containers:
+      - name: rns
+        image: docker.io/andresonthiago/app-mock-coreografia:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64M
+          limits:
+            cpu: 60m
+            memory: 228M  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rns-np
+  namespace: coreografia
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: webapp
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neurotech-api
+  namespace: coreografia
+  labels:
+    app: neurotech
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neurotech
+  template:
+    metadata:
+      labels:
+        app: neurotech
+    spec:
+      containers:
+      - name: neurotech
+        image: docker.io/andresonthiago/app-mock-coreografia:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64M
+          limits:
+            cpu: 60m
+            memory: 228M  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: neurotech-np
+  namespace: coreografia
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: webapp
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  geraroferta-api
+  namespace: coreografia
+  labels:
+    app: neurotech
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: geraroferta
+  template:
+    metadata:
+      labels:
+        app: geraroferta
+    spec:
+      containers:
+      - name: geraroferta
+        image: docker.io/andresonthiago/app-mock-coreografia:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64M
+          limits:
+            cpu: 60m
+            memory: 228M  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: geraroferta-np
+  namespace: coreografia
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: webapp
+  type: NodePort
